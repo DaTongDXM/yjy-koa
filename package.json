@@ -1,0 +1,19 @@
+{
+  "name": "yjy-koa",
+  "version": "1.0.0",
+  "description": "this is a bff framework based on koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaTongDXM/yjy-koa.git"
+  },
+  "author": "wuxudong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaTongDXM/yjy-koa/issues"
+  },
+  "homepage": "https://github.com/DaTongDXM/yjy-koa#readme"
+}
