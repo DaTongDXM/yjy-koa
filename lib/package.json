@@ -1,0 +1,18 @@
+{
+  "name": "yjy-koa-core",
+  "version": "1.0.0",
+  "description": "yjy-koa-core",
+  "main": "./dist/core/index.js",
+  "scripts": {
+    "build": "rm -rf ./dist && npx tsc"
+  },
+  "author": "wuxudong",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.14.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.0"
+  }
+}

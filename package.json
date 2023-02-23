@@ -4,7 +4,8 @@
   "description": "this is a bff framework based on koa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./example/app.ts",
+    "lerna": "npx lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/DaTongDXM/yjy-koa/issues"
   },
-  "homepage": "https://github.com/DaTongDXM/yjy-koa#readme"
+  "homepage": "https://github.com/DaTongDXM/yjy-koa#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "koa": "^2.14.1",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "lerna": "^2.8.0"
+  }
 }

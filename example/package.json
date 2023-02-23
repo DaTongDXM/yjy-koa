@@ -1,0 +1,23 @@
+{
+  "name": "yjy-koa-example",
+  "version": "1.0.0",
+  "description": "yjy-koa-example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yjy-koa",
+    "koa",
+    "bff"
+  ],
+  "devDependencies": {"@types/node": "^18.14.0",
+    "yjy-koa-core": "1.0.0"
+    
+  },
+  "author": "wuxudong",
+  "license": "ISC",
+  "dependencies": {
+    
+  }
+}
