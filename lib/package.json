@@ -9,6 +9,7 @@
   "author": "wuxudong",
   "license": "ISC",
   "dependencies": {
+    "@types/koa": "^2.13.5",
     "koa": "^2.14.1",
     "lodash": "^4.17.21"
   },
