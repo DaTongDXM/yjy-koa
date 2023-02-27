@@ -1,7 +1,6 @@
 import Router from "koa-router";
 
-module.exports = class YjyRouter extends Router {
-  constructor(app) {
-    super()
-  }
+export default async (app) => {
+  app.router = new Router()
+  // const ro
 }

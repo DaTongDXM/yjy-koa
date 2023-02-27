@@ -1,8 +1,7 @@
 export default async (app) => {
   const port = app.config.listen.port;
-  console.log('lift1', port)
   app.listen(port, () => {
-    porintLogo()
+    //porintLogo()
     log(`Server Port${c.cyan}${port}${c.end}`)
     log(`Server lifted in${c.cyan}${app.appPath}${c.end}`)
     // app.redisConMsg && log(app.redisConMsg)

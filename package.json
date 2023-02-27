@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./example/app.ts",
+    "test": "mocha --exit -t=10000 'test/**/*.spec.js'",
     "lerna": "npx lerna bootstrap"
   },
   "repository": {
@@ -23,6 +24,10 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
-    "lerna": "^2.8.0"
+    "@types/node": "^18.14.2",
+    "chai": "^4.3.7",
+    "lerna": "^2.8.0",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1"
   }
 }
