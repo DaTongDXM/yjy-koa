@@ -26,6 +26,7 @@ export default class KoaCore extends Koa {
     const koaCore = new KoaCore(params);
     await koaCore.initConfig();
     await koaCore.initHooks();
+    console.log(koaCore.app.controller)
     return koaCore;
   }
 
@@ -47,6 +48,7 @@ export default class KoaCore extends Koa {
 
       }
     }
+
   }
 
 }
