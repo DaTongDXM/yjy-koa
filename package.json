@@ -4,7 +4,7 @@
   "description": "this is a bff framework based on koa",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./example/app.ts",
+    "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./app/app.ts",
     "test": "cross-env NODE_ENV=dev mocha --exit -t=10000 'test/**/*.spec.js'",
     "lerna": "npx lerna bootstrap"
   },

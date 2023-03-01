@@ -1,7 +1,7 @@
 {
-  "name": "yjy-koa-example",
+  "name": "yjy-koa-app",
   "version": "1.0.0",
-  "description": "yjy-koa-example",
+  "description": "yjy-koa-app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

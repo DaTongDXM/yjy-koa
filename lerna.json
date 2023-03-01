@@ -1,7 +1,7 @@
 {
   "packages": [
     "lib",
-    "example"
+    "app"
   ],
   "version": "0.0.0",
   "lerna": "2.8.0"

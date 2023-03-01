@@ -1,6 +1,6 @@
 node_modules
-example/log
-example-multi/log
+app/log
+app-multi/log
 .vscode
 .mix
 .DS_Store
