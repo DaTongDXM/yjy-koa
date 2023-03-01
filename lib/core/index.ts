@@ -7,7 +7,7 @@ type Params = {
   appPath: string;
 }
 
-const hooks = ["lift", "controller"]
+const hooks = ["lift", "controller", "router"]
 
 export default class KoaCore extends Koa {
   public app: App = (new Koa()) as App;
@@ -26,7 +26,7 @@ export default class KoaCore extends Koa {
     const koaCore = new KoaCore(params);
     await koaCore.initConfig();
     await koaCore.initHooks();
-    console.log(koaCore.app.controller)
+    console.log(koaCore.app.router.get)
     return koaCore;
   }
 

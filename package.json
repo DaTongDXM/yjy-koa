@@ -24,6 +24,7 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "@types/koa-router": "^7.4.4",
     "@types/node": "^18.14.2",
     "chai": "^4.3.7",
     "lerna": "^2.8.0",
