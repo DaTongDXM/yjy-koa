@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./app/app.ts",
-    "test": "cross-env NODE_ENV=dev mocha --exit -t=10000 'test/**/*.spec.js'",
+    "test": "cross-env NODE_ENV=test NODE_TEST=true mocha --exit -t=10000 'test/**/*.spec.js'",
     "lerna": "npx lerna bootstrap"
   },
   "repository": {
@@ -18,18 +18,29 @@
     "url": "https://github.com/DaTongDXM/yjy-koa/issues"
   },
   "homepage": "https://github.com/DaTongDXM/yjy-koa#readme",
+  "mocha": {
+    "require": [
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ],
+    "ui": "bdd"
+  },
   "dependencies": {
     "cross-env": "^7.0.3",
     "koa": "^2.14.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.4",
     "@types/koa-router": "^7.4.4",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.2",
     "chai": "^4.3.7",
     "lerna": "^2.8.0",
     "mocha": "^10.2.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^3.14.2",
     "typescript": "^4.9.5"
   }
 }

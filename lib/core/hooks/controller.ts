@@ -12,6 +12,8 @@ export default async (app) => {
   app.controller = {}
   for (const controllerFile of controllerFiles) {
     const controller = await import(controllerFile)
+    // const c = new controller.default()
+    // console.log(c.index)
     const { name: controllerName } = controller.default;
     if (controllerName === undefined) {
       continue;
@@ -36,6 +38,7 @@ export default async (app) => {
         app.controller[name][key] = element;
       }
     }
+    app.controller.index = c.index
   }
 
 }

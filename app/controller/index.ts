@@ -10,7 +10,10 @@ export default class IndexController extends YJYKoaCore {
     console.info('i am IndexController-entry')
 
   }
-  public async index() {
-    console.info('i am IndexController-index')
+  public async index(ctx, next) {
+    // console.log(this)
+    // console.log(ctx)
+    ctx.body = 'index'
+    ctx.status = 200
   }
 }
