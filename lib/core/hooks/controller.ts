@@ -38,7 +38,6 @@ export default async (app) => {
         app.controller[name][key] = element;
       }
     }
-    app.controller.index = c.index
   }
 
 }

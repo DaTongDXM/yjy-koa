@@ -7,7 +7,7 @@ type Params = {
   appPath: string;
 }
 
-const hooks = ["lift", "controller", "router"]
+const hooks = ["lift", "controller", "router", "typing"]
 
 export default class KoaCore extends Koa {
   public app: App = (new Koa()) as App;

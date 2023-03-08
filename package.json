@@ -4,9 +4,12 @@
   "description": "this is a bff framework based on koa",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon -e ts,ejs --exec ts-node -T ./app/app.ts",
+    "dev": "cross-env NODE_ENV=dev nodemon --ignore '*.d.ts' -e ts,ejs --exec ts-node -T ./app/app.ts",
     "test": "cross-env NODE_ENV=test NODE_TEST=true mocha --exit -t=10000 'test/**/*.spec.js'",
-    "lerna": "npx lerna bootstrap"
+    "lerna": "lerna add yjy-koa-core --scope=yjy-koa-app && lerna link && npx lerna bootstrap",
+    "install": "concurrently \"npm run install:lib\" \"npm run install:app\"",
+    "install:lib": "cd ./lib && npm i",
+    "install:app": "cd ./app && npm i"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,7 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.2",
     "chai": "^4.3.7",
+    "concurrently": "^7.6.0",
     "lerna": "^2.8.0",
     "mocha": "^10.2.0",
     "ts-node": "^10.9.1",
