@@ -68,7 +68,6 @@ async function initTypingFile(app: App, sDir: string, tDir: string, subPath: str
     `}\n`
   fs.appendFile(path.join(tDir, 'index.d.ts'), content, (error) => {
     //TODO 后续这里补充日志
-    console.log(error)
   })
 
 }

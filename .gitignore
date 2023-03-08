@@ -1,5 +1,7 @@
 node_modules
 app/log
+app/typings
+app/typings1
 app-multi/log
 .vscode
 .mix
