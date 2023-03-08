@@ -1,5 +1,6 @@
 import glob from 'glob';
 import path from 'path';
+import assert from 'assert';
 import type KoaCore from '..';
 /**
  * @param {KoaCore} app
@@ -18,13 +19,9 @@ export default async (app) => {
     if (controllerName === undefined) {
       continue;
     }
-    if (!/Controller$/.test(controllerName)) {
-      throw new Error("controller mast end with 'Controller'");
-    }
+    assert(/Controller$/.test(controllerName), "controller mast end with 'Controller'")
     const name = controllerName.replace('Controller', '').toLowerCase();
-    if (name === controllerName) {
-      throw new Error("controller name must contain 'Controller'");
-    }
+    assert.notEqual(name, controllerName, "controller mast end with 'Controller',Pay attention to case")
     if (app.controller[name]) {
       throw new Error(`the controller width name '${name}' is repeatedly declared`);
     } else {

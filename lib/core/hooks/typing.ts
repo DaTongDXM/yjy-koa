@@ -2,10 +2,10 @@ import { App } from '../types/index';
 import path from 'path';
 import glob from 'glob';
 import fs from 'fs';
-const excludeDir = ['node_modules', 'typings', 'typings1', "config"]
+const excludeDir = ['node_modules', 'typings', 'log', "config"]
 export default async (app: App) => {
   const { appPath } = app;
-  const typingsPath = path.resolve(appPath, 'typings1');
+  const typingsPath = path.resolve(appPath, 'typings');
   let isExists = fs.existsSync(typingsPath)
   if (!isExists) {
     fs.mkdirSync(typingsPath)
@@ -40,7 +40,6 @@ function initTypingDir(app: App, typingsPath: string, subPath: string) {
 import 'koa';`
       )
     }
-
   }
   initTypingFile(app, sDir, tDir, subPath)
 }
@@ -66,7 +65,7 @@ async function initTypingFile(app: App, sDir: string, tDir: string, subPath: str
     `declare module 'koa'{\n` +
     `${composeInterface(subPath, interfaceMap)}` +
     `}\n`
-  fs.appendFile(path.join(tDir, 'index.d.ts'), content, (error) => {
+  fs.writeFile(path.join(tDir, 'index.d.ts'), content, (error) => {
     //TODO 后续这里补充日志
   })
 
