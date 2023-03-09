@@ -4,16 +4,20 @@ import path from "path";
 import assert from 'assert';
 import fs from 'fs';
 import { Options } from '../../types/cluster/index'
-module.exports = function (options: Options) {
+export default function (options: Options) {
   if (!options.workers) {
     //默认设置系统cup核数
     options.workers = os.cpus().length;
+  }
+  //设置默认路径
+  if (options.appPath) {
+    options.appPath = process.cwd()
   }
 
   const pkgPath = path.join(options.appPath, 'package.json');
   assert(fs.existsSync(pkgPath), `${pkgPath} shoule exist`);
 
-
+  return options;
 
 }
 
