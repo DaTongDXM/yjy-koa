@@ -7,7 +7,7 @@ interface Msg {
   action: string,
   data: any
 }
-class Messager {
+export default class Messager {
   private master;
   private hasParent;
   constructor(master) {
@@ -72,7 +72,7 @@ class Messager {
       // if (worker.state === '') {
 
       // }
-      this.sendToAppWorker(worker, msg)
+      sendmessage(worker, msg)
     }
   }
 
@@ -82,4 +82,3 @@ class Messager {
     }
   }
 }
-module.exports = Messager
