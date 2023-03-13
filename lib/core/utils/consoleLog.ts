@@ -14,6 +14,9 @@ export default class ConsoleLog {
     process.stdout.write(`${this.time} YJY-KOA INFO ${this.pid} ${message}\n`)
   }
   warning(message) {
-    process.stderr.write(`${this.time} YJY-KOA Warning ${this.pid} ${message}`)
+    process.stderr.write(`${this.time} YJY-KOA Warning ${this.pid} ${message}\n`)
+  }
+  error(message) {
+    process.stderr.write(`${this.time} YJY-KOA Error ${this.pid} ${message}\n`)
   }
 }

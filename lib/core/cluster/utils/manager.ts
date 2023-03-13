@@ -6,7 +6,7 @@ export default class Manager extends EventEmitter {
   public workers;
   //agent进程只有一个，不需要存储在map
   private agent;
-  private expection;
+  private exception;
   private timer;
   constructor() {
     super();
@@ -56,16 +56,16 @@ export default class Manager extends EventEmitter {
   }
   //检查agent线程和worker线程是不是同时处于活跃状态，超过三次轮训后触发expection事件
   startCheck() {
-    this.expection = 0;
+    this.exception = 0;
     this.timer = setInterval(() => {
       const { agent, worker } = this.count();
       if (agent && worker) {
-        this.expection = 0;
+        this.exception = 0;
         return;
       }
-      this.expection++;
-      if (this.expection >= 3) {
-        this.emit('expection', { agent, worker });
+      this.exception++;
+      if (this.exception >= 3) {
+        this.emit('exception', { agent, worker });
         clearInterval(this.timer)
       }
     }, 10000)

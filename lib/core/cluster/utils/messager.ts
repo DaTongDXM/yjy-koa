@@ -2,7 +2,7 @@ import cluster from 'cluster';
 import sendmessage from "sendmessage";
 interface Msg {
   from: string;
-  receiverPid: string,
+  receiverPid?: string,
   to: string,
   action: string,
   data: any
