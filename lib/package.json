@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/koa": "^2.13.5",
+    "cfork": "^1.8.0",
     "detect-port": "^1.5.1",
     "glob": "^8.1.0",
     "koa": "^2.14.1",

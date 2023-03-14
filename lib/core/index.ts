@@ -7,7 +7,7 @@ type Params = {
   appPath: string;
 }
 
-const hooks = ["lift", "controller", "router", "typing"]
+const hooks = ["config", "controller", "router", "typing"]
 
 export default class KoaCore extends Koa {
   public app: App = (new Koa()) as App;
@@ -20,7 +20,10 @@ export default class KoaCore extends Koa {
     this.app.on('error', error => {
       console.log('#################error', error)
     })
-
+    process.on('uncaughtException', (e) => {
+      console.error(e.message)
+      process.exit(1);
+    })
   }
 
   static async create(params: Params) {

@@ -6,14 +6,20 @@ import Manager from "./utils/manager";
 import ConsoleLog from "../utils/consoleLog";
 import childprocess from 'child_process';
 import path from 'path';
+import cfork from "cfork";
 import GetFreePort from 'detect-port';
-import { Options } from '../types/cluster/index'
+import { Options } from '../types/cluster/index';
+/**
+ * 
+ */
 class Master extends EventEmitter {
   public options;
   public messager: Messager;
   public manager: Manager;
   public log: ConsoleLog;
   public agentWorker;
+  public isAllAppWorkerStarted = false;
+  public startSuccessCount = 0;
   constructor(options: Options) {
     super()
     this.options = parseOptions(options);
@@ -26,6 +32,8 @@ class Master extends EventEmitter {
     this.log.info(`[master] yjy-koa version ${yjykoaVersion}`)
 
     this.on('agent-start', this.onAgentStart.bind(this));
+    this.once('agent-start', this.forkAppWorkers.bind(this));
+
 
     this.detectPorts().then(() => {
       this.forkAgentWorker()
@@ -93,6 +101,25 @@ class Master extends EventEmitter {
       action: 'agent-start'
     });
     this.log.info(`[master] agent_worker ${this.agentWorker.pid} started`)
+  }
+  forkAppWorkers() {
+    const args = [JSON.stringify(this.options)]
+    this.log.info(`[master] start appWorker with options ${args}`)
+    //cfork批量开启进程
+    /**
+    * exec: 执行文件路径
+    *args: exec 参数
+    *count: 开启进程数量, 默认为os.cpus().length
+    *silent: 是否将输出发送到父进程，默认 false
+    *refork: 当进程断开连接或意外退出时是否重启，默认为true
+    *windowsHide： 隐藏在 Windows 系统上创建的进程控制台窗口，默认false
+     */
+    cfork({
+      exec: path.join(__dirname, 'app_work'),
+      args,
+      count: this.options.workers,
+      windowsHide: process.platform === 'win32'
+    })
   }
 }
 module.exports = Master

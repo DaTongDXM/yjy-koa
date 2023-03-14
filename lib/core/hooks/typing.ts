@@ -53,7 +53,10 @@ import 'koa';`
 async function initTypingFile(app: App, sDir: string, tDir: string, subPath: string) {
   const sFilePath = `${path.join(sDir, `**/*${app.extName}`)}`.replace(/\\/g, '/')
   const sFiles = glob.sync(sFilePath);
-  let importStr = ''
+  let importStr = `// This file is created by yjy-koa
+// Do not modify this file!!!!!!!!!
+import 'koa';
+`
   const interfaceMap = {}
   for (const sFile of sFiles) {
     const sModule = await require(sFile).default
