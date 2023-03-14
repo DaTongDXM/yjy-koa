@@ -1,11 +1,11 @@
 import cluster from 'cluster';
 import sendmessage from "sendmessage";
-interface Msg {
-  from: string;
+export interface Msg {
+  from?: string;
   receiverPid?: string,
-  to: string,
-  action: string,
-  data: any
+  to?: string,
+  action?: string,
+  data?: any
 }
 export default class Messager {
   private master;
@@ -44,7 +44,7 @@ export default class Messager {
       if (msg.from === 'parent') msg.to = 'master';
     }
 
-    if (msg.to === 'mster') {
+    if (msg.to === 'master') {
       this.sendToMaster(msg)
       return;
     }
@@ -55,6 +55,7 @@ export default class Messager {
     }
   }
   sendToMaster(msg: Msg) {
+
     this.master.emit(msg.action, msg.data)
   }
   //如果node不是IPC通道传递消息则直接return回去
