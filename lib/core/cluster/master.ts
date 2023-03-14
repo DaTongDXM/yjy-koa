@@ -1,6 +1,7 @@
 import EventEmitter from "events";
 import parseOptions from "./utils/options";
-import Messager from './utils/messager'
+import Messager from './utils/messager';
+import { Msg } from './utils/messager';
 import Manager from "./utils/manager";
 import ConsoleLog from "../utils/consoleLog";
 import childprocess from 'child_process';
@@ -12,6 +13,7 @@ class Master extends EventEmitter {
   public messager: Messager;
   public manager: Manager;
   public log: ConsoleLog;
+  public agentWorker;
   constructor(options: Options) {
     super()
     this.options = parseOptions(options);
@@ -22,6 +24,8 @@ class Master extends EventEmitter {
     this.log.info(`[master] ========================YJY-KOA Start========================`)
     this.log.info(`[master] node version ${process.version}`)
     this.log.info(`[master] yjy-koa version ${yjykoaVersion}`)
+
+    this.on('agent-start', this.onAgentStart.bind(this));
 
     this.detectPorts().then(() => {
       this.forkAgentWorker()
@@ -56,25 +60,24 @@ class Master extends EventEmitter {
   forkAgentWorker() {
     const args = [JSON.stringify(this.options)];
     const agentFile = path.join(__dirname, 'agent_work');
-    const agentWorker = childprocess.fork(agentFile, args);
-    this.manager.setAgent(agentWorker);
-    this.log.info(`[master] agent worker ${agentWorker.pid} start with clusterPort:${this.options.clusterPort}`)
+    this.agentWorker = childprocess.fork(agentFile, args);
+    this.manager.setAgent(this.agentWorker);
+    this.log.info(`[master] agent worker ${this.agentWorker.pid} start with clusterPort:${this.options.clusterPort}`)
 
-    agentWorker.on('message', msg => {
-      let message;
+    this.agentWorker.on('message', (msg: Msg) => {
       if (typeof msg === 'string') {
-        message = { action: msg, data: msg }
+        msg = { action: msg, data: msg }
       }
-      message.from = 'agent'
-      this.messager.send(message)
+      msg.from = 'agent'
+      this.messager.send(msg)
 
     });
 
-    agentWorker.on('error', err => {
+    this.agentWorker.on('error', err => {
       this.log.error(err)
     });
 
-    agentWorker.on('exit', (code, signal) => {
+    this.agentWorker.on('exit', (code, signal) => {
       this.messager.send({
         action: 'agent-exit',
         data: { code, signal },
@@ -82,6 +85,14 @@ class Master extends EventEmitter {
         to: 'master'
       })
     })
+  }
+  onAgentStart() {
+    this.agentWorker.status = 'started';
+    this.messager.send({
+      to: 'app',
+      action: 'agent-start'
+    });
+    this.log.info(`[master] agent_worker ${this.agentWorker.pid} started`)
   }
 }
 module.exports = Master

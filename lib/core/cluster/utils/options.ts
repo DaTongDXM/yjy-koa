@@ -11,7 +11,7 @@ export default function (options: Options) {
   }
   //设置默认路径
   if (options.appPath) {
-    options.appPath = process.cwd()
+    options.appPath = path.join(process.cwd(), 'app')
   }
 
   const pkgPath = path.join(options.appPath, 'package.json');

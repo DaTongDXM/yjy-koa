@@ -1,5 +1,5 @@
 import ConsoleLog from "../utils/consoleLog";
-import YjyKoa from '../../core/index'
+import YjyKoa from '../../core/index';
 /**
  * process.argv获取命令行指令参数，以childprocess.fork(agentFile, ['a','b'])为例
  * process.argv[0]返回启动Node.js进程的可执行文件所在的绝对路径
@@ -8,6 +8,14 @@ import YjyKoa from '../../core/index'
  * process.argv[2]：'a'
  * process.argv[3]：'b'
 */
+const log = new ConsoleLog()
 const options = JSON.parse(process.argv[2])
-console.log(options)
-const cluster = new YjyKoa(options)
+
+const agent = new YjyKoa(options);
+
+if (process.send) {
+  process.send({ action: 'agent-start', to: 'master' });
+} else {
+  log.error(`If Node.js was not spawned with an IPC channel, process.send is undefined.`)
+}
+
