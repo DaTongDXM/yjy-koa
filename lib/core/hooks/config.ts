@@ -5,8 +5,12 @@ import { App } from '../types/index'
 export default (app: App) => {
   const appPath = app.appPath;
   const configFPath = path.join(appPath, 'config1')
-  console.log(configFPath)
-  console.log(fs.statSync(configFPath).isDirectory())
+
+
+  console.log(fs.statSync(configFPath));
+
+
+
   assert(fs.existsSync(configFPath), `Directory ${configFPath} not exists`);
   assert(fs.statSync(configFPath).isDirectory(), `Directory ${configFPath} is not a directory`)
   assert(false)
