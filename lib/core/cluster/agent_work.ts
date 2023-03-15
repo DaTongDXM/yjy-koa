@@ -19,3 +19,11 @@ if (process.send) {
   log.error(`If Node.js was not spawned with an IPC channel, process.send is undefined.`)
 }
 
+process.on('unhandledRejection', (err) => {
+  throw err;
+})
+
+process.on('uncaughtException', (err) => {
+  throw err;
+})
+

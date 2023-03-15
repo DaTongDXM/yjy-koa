@@ -45,6 +45,10 @@ class Master extends EventEmitter {
         this.log.error(err);
       process.exit(1);
     })
+
+    process.on('uncaughtException', (err) => {
+      console.log('uncaught exception', err);
+    });
   }
   detectPorts() {
     return GetFreePort()
