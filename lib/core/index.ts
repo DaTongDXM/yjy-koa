@@ -20,10 +20,11 @@ export default class KoaCore extends Koa {
     this.app.on('error', error => {
       console.log('#################error', error)
     })
-    process.on('uncaughtException', (e) => {
-      console.error(e.message)
-      process.exit(1);
-    })
+    // process.on('uncaughtException', (e) => {
+
+    //   console.error(e.message)
+    //   process.exit(1);
+    // })
   }
 
   static async create(params: Params) {
@@ -51,7 +52,7 @@ export default class KoaCore extends Koa {
       try {
         await hook.default(this.app);
       } catch (error) {
-
+        throw new Error(String(error))
       }
     }
 

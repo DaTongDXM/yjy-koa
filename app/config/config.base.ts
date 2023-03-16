@@ -5,6 +5,8 @@ export default app => {
     },
     api: {
       main: '_main.aspx'
-    }
+    },
+    errorEmile: 'wuxudong@fang.com',
+    witeList: [1, 2, 3, 4],
   }
 }

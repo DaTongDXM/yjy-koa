@@ -5,6 +5,7 @@ export default app => {
     },
     api: {
       user: '_user.aspx'
-    }
+    },
+    witeList: [99],
   }
 }
