@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'node:fs';
+import fs from 'fs';
 import _throw from '../utils/throw';
 import { App } from '../types/index'
 export default async (app: App) => {

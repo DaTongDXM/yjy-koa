@@ -1,6 +1,7 @@
 import glob from 'glob';
 import path from 'path';
 import assert from 'assert';
+import _throw from '../utils/throw';
 import type KoaCore from '..';
 /**
  * @param {KoaCore} app
@@ -19,7 +20,7 @@ export default async (app) => {
     if (controllerName === undefined) {
       continue;
     }
-    assert(/Controller$/.test(controllerName), "controller mast end with 'Controller'")
+    _throw(/Controller$/.test(controllerName), "controller mast end with 'Controller'")
     const name = controllerName.replace('Controller', '').toLowerCase();
     assert.notEqual(name, controllerName, "controller mast end with 'Controller',Pay attention to case")
     if (app.controller[name]) {

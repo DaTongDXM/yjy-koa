@@ -12,7 +12,7 @@ const log = new ConsoleLog()
 const options = JSON.parse(process.argv[2])
 
 const agent = new YjyKoa(options);
-
+console.log(agent.app)
 if (process.send) {
   process.send({ action: 'agent-start', to: 'master' });
 } else {
